@@ -9,13 +9,19 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
-        <HeroSection />
-        <GradesSection />
-        <AboutSection />
-        <BookingSection />
-      </main>
-      <Footer />
+      {/* overflow-x:hidden lives here (not on html/body) so decorative bleed
+          (ElectricBorder glow, etc.) can never cause page-level horizontal
+          scroll, while the fixed Navbar stays outside this clipping
+          ancestor and remains reliably tappable on WebKit/iOS. */}
+      <div className="flex flex-1 flex-col overflow-x-hidden">
+        <main className="flex-1">
+          <HeroSection />
+          <GradesSection />
+          <AboutSection />
+          <BookingSection />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

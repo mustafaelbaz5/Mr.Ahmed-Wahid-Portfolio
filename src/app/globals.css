@@ -32,7 +32,12 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem; /* offset for sticky navbar on anchor jumps */
-  overflow-x: hidden;
+  /* NOTE: overflow-x:hidden must NOT be set on <html> or <body> — WebKit/
+     iOS Safari has a long-standing bug where that breaks hit-testing on
+     `position: fixed` descendants (our Navbar + its mobile menu), making
+     them untappable. Horizontal-scroll protection instead lives on a
+     wrapper div in page.tsx, around the scrollable content only — the
+     fixed Navbar sits outside it and is unaffected. */
 }
 
 body {
@@ -42,8 +47,6 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   position: relative;
-  overflow-x: hidden;
-  max-width: 100vw;
 }
 
 /* Latin numerals / english snippets use Inter */
@@ -121,6 +124,10 @@ body {
   height: 100%;
   object-fit: contain;
   object-position: center;
+  /* Reset the base component's centering transform (translateX(-50%) paired
+     with left:50%) — since we position via inset:0 instead, that leftover
+     transform shifted the image half a card-width off-screen. */
+  transform: none;
 }
 
 /* Keep the card static on hover — no rotation, no holographic sweep. */
