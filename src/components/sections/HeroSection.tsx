@@ -8,10 +8,6 @@ import ElectricBorder from "@/components/effects/ElectricBorder";
 import ProfileCard from "@/components/effects/ProfileCard";
 
 export function HeroSection() {
-  const scrollToBooking = () => {
-    document.querySelector("#booking")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
       id="top"
@@ -83,18 +79,12 @@ export function HeroSection() {
         >
           <ElectricBorder color="#60A5FA" speed={1} chaos={0.1} borderRadius={30}>
             <ProfileCard
-              name={teacher.name}
-              title="أستاذ الفيزياء والعلوم"
-              handle={teacher.handle}
-              status={teacher.status}
-              contactText="احجز الآن"
               avatarUrl={teacher.photoUrl}
-              showUserInfo
-              enableTilt
+              showUserInfo={false}
+              enableTilt={false}
               behindGlowEnabled
               behindGlowColor="rgba(96, 165, 250, 0.55)"
               innerGradient="linear-gradient(145deg,#16294a8c 0%,#2563EB44 100%)"
-              onContactClick={scrollToBooking}
             />
           </ElectricBorder>
         </motion.div>

@@ -1,4 +1,4 @@
-import { Atom, MapPin, Phone } from "lucide-react";
+import { Atom, Code2, MapPin, Phone } from "lucide-react";
 import { teacher } from "@/data/teacher";
 
 // Lucide dropped brand glyphs, so the Facebook mark is a small inline SVG to
@@ -75,8 +75,12 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-4 py-5 text-center text-xs text-slate-500 sm:px-6">
-          © {year} {teacher.name}. جميع الحقوق محفوظة.
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-5 text-center text-xs text-slate-500 sm:flex-row sm:px-6">
+          <span>© {year} {teacher.name}. جميع الحقوق محفوظة.</span>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-slate-400">
+            <Code2 className="h-3.5 w-3.5 text-blue-400" aria-hidden="true" />
+            Developed by Mustafa Elbaz
+          </span>
         </div>
       </div>
     </footer>

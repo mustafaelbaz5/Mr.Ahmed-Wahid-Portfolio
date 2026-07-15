@@ -88,24 +88,25 @@ body {
 /* ---------------------------------------------------------------------------
    Hero ProfileCard — the React Bits component defaults to a near full-height
    card sized for a transparent character cutout; the real teacher photo is a
-   full rectangular shot, so this overrides sizing, the avatar layer, and
-   adds a scrim so the name/title stay legible over any photo content.
+   full rectangular shot shown clean (no overlay text), larger, and static
+   (tilt disabled via props; the rules below also neutralize the component's
+   pure-CSS :hover shine/glare sweep, which fires independently of props).
 --------------------------------------------------------------------------- */
 .hero-profile-card .pc-card {
-  height: 400px !important;
-  max-height: 400px !important;
-  aspect-ratio: 0.85;
+  height: 500px !important;
+  max-height: 500px !important;
+  aspect-ratio: 0.95;
 }
 
 @media (max-width: 640px) {
   .hero-profile-card .pc-card {
-    height: 320px !important;
-    max-height: 320px !important;
+    height: 350px !important;
+    max-height: 350px !important;
   }
 }
 
-.hero-profile-card .pc-details h3 {
-  font-family: var(--font-sans);
+.hero-profile-card .pc-details {
+  display: none;
 }
 
 .hero-profile-card .pc-avatar-content {
@@ -118,17 +119,25 @@ body {
   bottom: auto;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 30% 22%;
-  transform: scale(calc(1 + (var(--pointer-from-left) - 0.5) * 0.02));
-  transform-origin: center;
+  object-fit: contain;
+  object-position: center;
 }
 
-.hero-profile-card .pc-avatar-content::before {
-  background: linear-gradient(
-    to top,
-    rgba(10, 22, 40, 0.9) 0%,
-    rgba(10, 22, 40, 0.1) 38%,
-    rgba(10, 22, 40, 0.55) 100%
-  );
+/* Keep the card static on hover — no rotation, no holographic sweep. */
+.hero-profile-card .pc-card:hover,
+.hero-profile-card .pc-card.active {
+  transform: translateZ(0) rotateX(0deg) rotateY(0deg) !important;
+}
+
+.hero-profile-card .pc-card:hover .pc-shine,
+.hero-profile-card .pc-card.active .pc-shine {
+  filter: brightness(0.66) contrast(1.33) saturate(0.33) opacity(0.5) !important;
+  animation-play-state: running !important;
+}
+
+.hero-profile-card .pc-card:hover .pc-shine::before,
+.hero-profile-card .pc-card.active .pc-shine::before,
+.hero-profile-card .pc-card:hover .pc-shine::after,
+.hero-profile-card .pc-card.active .pc-shine::after {
+  opacity: 0 !important;
 }
