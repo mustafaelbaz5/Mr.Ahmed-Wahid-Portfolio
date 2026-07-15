@@ -13,7 +13,7 @@ export function GradesSection() {
   const visibleGrades = gradesByStage(stage);
 
   return (
-    <section id="grades" className="bg-white py-20 sm:py-28">
+    <section id="grades" className="bg-navy-800/40 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="المواعيد والأماكن"

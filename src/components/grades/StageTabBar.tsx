@@ -18,7 +18,7 @@ export function StageTabBar({ active, onChange }: StageTabBarProps) {
     <div
       role="tablist"
       aria-label="المراحل الدراسية"
-      className="mx-auto flex w-full max-w-md rounded-2xl bg-card p-1.5 ring-1 ring-card-muted"
+      className="mx-auto flex w-full max-w-md rounded-2xl border border-white/10 bg-white/5 p-1.5 backdrop-blur-sm"
     >
       {tabs.map((tab) => {
         const isActive = tab.stage === active;
@@ -29,13 +29,13 @@ export function StageTabBar({ active, onChange }: StageTabBarProps) {
             aria-selected={isActive}
             onClick={() => onChange(tab.stage)}
             className={`relative flex-1 rounded-xl px-4 py-2.5 text-sm font-bold transition-colors ${
-              isActive ? "text-white" : "text-navy hover:text-blue"
+              isActive ? "text-white" : "text-slate-300 hover:text-blue-400"
             }`}
           >
             {isActive && (
               <motion.span
                 layoutId="stage-pill"
-                className="absolute inset-0 rounded-xl bg-blue"
+                className="absolute inset-0 rounded-xl bg-blue shadow-[0_0_20px_rgba(37,99,235,0.6)]"
                 transition={{ type: "spring", stiffness: 400, damping: 32 }}
               />
             )}

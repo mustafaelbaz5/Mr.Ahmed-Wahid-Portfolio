@@ -7,9 +7,9 @@ import { AnimatedReveal } from "@/components/ui/AnimatedReveal";
 
 export function AboutSection() {
   return (
-    <section id="about" className="bg-navy py-20 text-white sm:py-28">
+    <section id="about" className="bg-navy-700/40 py-20 text-white sm:py-28">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <SectionHeading eyebrow="تعرّف عليّ" title="من أنا" invert />
+        <SectionHeading eyebrow="تعرّف عليّ" title="من أنا" />
 
         <AnimatedReveal className="mt-10" delay={0.1}>
           <p className="text-center text-lg leading-loose text-slate-300">

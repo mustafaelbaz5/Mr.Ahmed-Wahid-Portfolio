@@ -5,7 +5,6 @@ interface SectionHeadingProps {
   title: ReactNode;
   subtitle?: string;
   align?: "center" | "start";
-  invert?: boolean; // for use on dark backgrounds
 }
 
 export function SectionHeading({
@@ -13,7 +12,6 @@ export function SectionHeading({
   title,
   subtitle,
   align = "center",
-  invert = false,
 }: SectionHeadingProps) {
   const alignment =
     align === "center" ? "items-center text-center" : "items-start text-start";
@@ -21,28 +19,20 @@ export function SectionHeading({
   return (
     <div className={`flex flex-col gap-3 ${alignment}`}>
       {eyebrow && (
-        <span className="text-blue font-semibold text-sm tracking-wide">
+        <span className="text-blue-400 font-semibold text-sm tracking-wide">
           {eyebrow}
         </span>
       )}
-      <h2
-        className={`text-3xl sm:text-4xl font-extrabold leading-tight ${
-          invert ? "text-white" : "text-navy"
-        }`}
-      >
+      <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight text-white">
         {title}
       </h2>
       <span
-        className={`h-1 w-16 rounded-full bg-blue ${
+        className={`h-1 w-16 rounded-full bg-blue shadow-[0_0_12px_rgba(37,99,235,0.8)] ${
           align === "center" ? "mx-auto" : ""
         }`}
       />
       {subtitle && (
-        <p
-          className={`max-w-2xl text-base sm:text-lg mt-1 ${
-            invert ? "text-slate-300" : "text-slate-600"
-          }`}
-        >
+        <p className="max-w-2xl text-base sm:text-lg mt-1 text-slate-300">
           {subtitle}
         </p>
       )}

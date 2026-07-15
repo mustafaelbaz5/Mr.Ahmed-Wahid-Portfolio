@@ -24,8 +24,9 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0a1628;
+  --background: #0a1628;
+  --foreground: #ffffff;
+  color-scheme: dark;
 }
 
 html {
@@ -39,6 +40,39 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+/* ---------------------------------------------------------------------------
+   Site-wide ambient background — fixed electric-blue glows + a faint circuit
+   grid, echoing the hero's Lightfall canvas so every section (including the
+   ones without WebGL) reads as part of the same "electric" world.
+--------------------------------------------------------------------------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(560px circle at 8% 10%, rgba(37, 99, 235, 0.16), transparent 60%),
+    radial-gradient(620px circle at 95% 30%, rgba(96, 165, 250, 0.12), transparent 60%),
+    radial-gradient(680px circle at 15% 85%, rgba(37, 99, 235, 0.14), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    auto,
+    48px 48px,
+    48px 48px;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
+  mask-image: linear-gradient(to bottom, black, black 92%, transparent);
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Latin numerals / english snippets use Inter */
