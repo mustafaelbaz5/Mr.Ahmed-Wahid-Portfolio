@@ -39,6 +39,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+export const viewport = {
+  themeColor: "#0a1628",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,7 +54,7 @@ export default function RootLayout({
       dir="rtl"
       className={`${cairo.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-navy">
+      <body className="min-h-full flex flex-col bg-navy text-white">
         {children}
       </body>
     </html>

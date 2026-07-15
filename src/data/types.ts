@@ -26,6 +26,8 @@ export interface GradeInfo {
 export interface TeacherProfile {
   name: string;
   title: string;
+  handle: string; // short latin handle for the profile card, e.g. "ahmed_waheed"
+  status: string; // e.g. "متاح لحجز مواعيد جديدة"
   bio: string;
   phone: string;
   photoUrl: string;

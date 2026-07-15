@@ -56,17 +56,17 @@ export function BookingForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="flex flex-col items-center gap-4 rounded-2xl bg-white p-10 text-center shadow-[var(--shadow-card)]"
+        className="flex flex-col items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-10 text-center backdrop-blur-sm"
       >
         <CheckCircle2 className="h-14 w-14 text-whatsapp" aria-hidden="true" />
-        <h3 className="text-2xl font-extrabold text-navy">تم استلام طلبك!</h3>
-        <p className="text-slate-600">
+        <h3 className="text-2xl font-extrabold text-white">تم استلام طلبك!</h3>
+        <p className="text-slate-300">
           سنتواصل معك قريبًا لتأكيد الحجز. شكرًا لثقتك.
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-2 font-semibold text-blue hover:underline"
+          className="mt-2 font-semibold text-blue-400 hover:underline"
         >
           إرسال طلب آخر
         </button>
@@ -75,17 +75,17 @@ export function BookingForm() {
   }
 
   const inputClass =
-    "w-full rounded-xl border border-card-muted bg-white px-4 py-3 text-navy placeholder:text-slate-400 focus:border-blue focus:outline-none focus:ring-2 focus:ring-blue/20 transition";
+    "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder:text-slate-500 focus:border-blue focus:outline-none focus:ring-2 focus:ring-blue/30 transition";
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="flex flex-col gap-5 rounded-2xl bg-white p-6 shadow-[var(--shadow-card)] sm:p-8"
+      className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_45px_-25px_rgba(37,99,235,0.5)] backdrop-blur-sm sm:p-8"
     >
       {/* Student name */}
       <motion.div variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}>
-        <label htmlFor="studentName" className="mb-1.5 block text-sm font-bold text-navy">
+        <label htmlFor="studentName" className="mb-1.5 block text-sm font-bold text-white">
           اسم الطالب
         </label>
         <input
@@ -102,7 +102,7 @@ export function BookingForm() {
 
       {/* Student phone */}
       <motion.div variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={1}>
-        <label htmlFor="studentPhone" className="mb-1.5 block text-sm font-bold text-navy">
+        <label htmlFor="studentPhone" className="mb-1.5 block text-sm font-bold text-white">
           رقم الطالب
         </label>
         <input
@@ -121,7 +121,7 @@ export function BookingForm() {
 
       {/* Parent phone */}
       <motion.div variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2}>
-        <label htmlFor="parentPhone" className="mb-1.5 block text-sm font-bold text-navy">
+        <label htmlFor="parentPhone" className="mb-1.5 block text-sm font-bold text-white">
           رقم ولي الأمر
         </label>
         <input
@@ -140,7 +140,7 @@ export function BookingForm() {
 
       {/* Grade */}
       <motion.div variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={3}>
-        <label htmlFor="grade" className="mb-1.5 block text-sm font-bold text-navy">
+        <label htmlFor="grade" className="mb-1.5 block text-sm font-bold text-white">
           الصف الدراسي
         </label>
         <select
@@ -150,11 +150,11 @@ export function BookingForm() {
           className={inputClass}
           {...register("grade")}
         >
-          <option value="" disabled>
+          <option value="" disabled className="bg-navy text-white">
             اختر الصف الدراسي
           </option>
           {grades.map((g) => (
-            <option key={g.id} value={g.id}>
+            <option key={g.id} value={g.id} className="bg-navy text-white">
               {g.label}
             </option>
           ))}
@@ -163,7 +163,7 @@ export function BookingForm() {
       </motion.div>
 
       {status === "error" && (
-        <p className="flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-600">
+        <p className="flex items-center gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-300">
           <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
           {errorMsg}
         </p>
@@ -193,7 +193,7 @@ export function BookingForm() {
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
   return (
-    <p role="alert" className="mt-1.5 flex items-center gap-1.5 text-sm font-semibold text-red-600">
+    <p role="alert" className="mt-1.5 flex items-center gap-1.5 text-sm font-semibold text-red-400">
       <AlertCircle className="h-3.5 w-3.5" aria-hidden="true" />
       {message}
     </p>

@@ -23,7 +23,7 @@ const perks = [
 
 export function BookingSection() {
   return (
-    <section id="booking" className="bg-card py-20 sm:py-28">
+    <section id="booking" className="bg-navy-700/40 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="ابدأ الآن"
@@ -36,12 +36,12 @@ export function BookingSection() {
           <AnimatedReveal from="right" className="flex flex-col gap-6">
             {perks.map(({ Icon, title, text }) => (
               <div key={title} className="flex items-start gap-4">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-blue/10 text-blue">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-blue/15 text-blue-400">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                 </span>
                 <div>
-                  <h3 className="text-lg font-extrabold text-navy">{title}</h3>
-                  <p className="mt-1 text-slate-600">{text}</p>
+                  <h3 className="text-lg font-extrabold text-white">{title}</h3>
+                  <p className="mt-1 text-slate-300">{text}</p>
                 </div>
               </div>
             ))}

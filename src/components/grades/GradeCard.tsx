@@ -6,15 +6,17 @@ import { ChevronDown, GraduationCap } from "lucide-react";
 import type { GradeInfo } from "@/data/types";
 import { ScheduleItem } from "./ScheduleItem";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import ElectricBorder from "@/components/effects/ElectricBorder";
 
 export function GradeCard({ grade }: { grade: GradeInfo }) {
   const [expanded, setExpanded] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const panelId = `grade-panel-${grade.id}`;
 
-  return (
+  const card = (
     <motion.article
       layout
-      className="flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-card)] ring-1 ring-card-muted"
+      className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_20px_45px_-25px_rgba(37,99,235,0.5)] backdrop-blur-sm"
     >
       {/* Header — toggles the schedule panel */}
       <button
@@ -25,12 +27,12 @@ export function GradeCard({ grade }: { grade: GradeInfo }) {
         className="flex items-center justify-between gap-3 p-5 text-start"
       >
         <div className="flex items-center gap-3">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-blue/10 text-blue">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-blue/15 text-blue-400">
             <GraduationCap className="h-6 w-6" aria-hidden="true" />
           </span>
           <div>
-            <h3 className="text-lg font-extrabold text-navy">{grade.label}</h3>
-            <span className="mt-1 inline-block rounded-full bg-blue/10 px-3 py-0.5 text-xs font-bold text-blue">
+            <h3 className="text-lg font-extrabold text-white">{grade.label}</h3>
+            <span className="mt-1 inline-block rounded-full bg-blue/15 px-3 py-0.5 text-xs font-bold text-blue-400">
               {grade.subject}
             </span>
           </div>
@@ -66,10 +68,28 @@ export function GradeCard({ grade }: { grade: GradeInfo }) {
       </AnimatePresence>
 
       {/* WhatsApp CTAs pinned to the bottom */}
-      <div className="mt-auto flex gap-3 border-t border-card-muted bg-white/60 p-5">
+      <div className="mt-auto flex gap-3 border-t border-white/10 bg-black/10 p-5">
         <WhatsAppButton href={grade.whatsapp.boys} label="مجموعة الأولاد" />
         <WhatsAppButton href={grade.whatsapp.girls} label="مجموعة البنات" />
       </div>
     </motion.article>
+  );
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={() => setHovered(false)}
+      className="h-full"
+    >
+      {hovered ? (
+        <ElectricBorder color="#2563eb" speed={1.2} chaos={0.08} borderRadius={16}>
+          {card}
+        </ElectricBorder>
+      ) : (
+        card
+      )}
+    </div>
   );
 }
