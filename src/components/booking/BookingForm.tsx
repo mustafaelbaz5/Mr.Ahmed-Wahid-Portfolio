@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Loader2, Send, AlertCircle } from "lucide-react";
 import { bookingSchema, type BookingFormValues } from "@/lib/validation";
 import { sendBooking } from "@/lib/email";
-import { grades } from "@/data/grades";
+import { allGrades } from "@/data/grades";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -153,7 +153,7 @@ export function BookingForm() {
           <option value="" disabled className="bg-navy text-white">
             اختر الصف الدراسي
           </option>
-          {grades.map((g) => (
+          {allGrades.map((g) => (
             <option key={g.id} value={g.id} className="bg-navy text-white">
               {g.label}
             </option>

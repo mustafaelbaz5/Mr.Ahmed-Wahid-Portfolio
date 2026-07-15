@@ -5,7 +5,7 @@ import type { Stage } from "@/data/types";
 
 const tabs: { stage: Stage; label: string }[] = [
   { stage: "preparatory", label: "المرحلة الإعدادية" },
-  { stage: "secondary", label: "المرحلة الثانوية" },
+  { stage: "secondary", label: "الثانوية والبكالوريا" },
 ];
 
 interface StageTabBarProps {

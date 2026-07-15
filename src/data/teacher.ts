@@ -1,25 +1,31 @@
 import type { ExperienceStat, TeacherProfile } from "./types";
+import { prepGrades, secondaryGrades } from "./grades";
+import { locations } from "./locations";
 
 export const teacher: TeacherProfile = {
-  name: "أ. أحمد وحيد",
-  title: "مدرس الفيزياء والعلوم",
-  handle: "ahmed_waheed",
-  status: "متاح لحجز مواعيد جديدة",
+  name: "مستر أحمد وحيد",
+  title:
+    "أستاذ الفيزياء والعلوم المتكاملة للمرحلة الإعدادية والثانوية والبكالوريا",
   bio:
-    "مدرس فيزياء وعلوم بخبرة تتجاوز خمسة عشر عامًا في تدريس طلاب المرحلتين الإعدادية والثانوية. " +
-    "أؤمن بأن الفيزياء لغة نفهم بها العالم من حولنا، ولذلك أحرص على تبسيط المفاهيم وربطها بالحياة اليومية. " +
-    "أسلوبي يعتمد على الشرح المتدرّج، وحل المسائل خطوة بخطوة، والمتابعة المستمرة لكل طالب حتى يتقن المادة ويثق في قدراته.",
-  phone: "+201000000000",
-  photoUrl: "/teacher.svg",
-  socialLinks: {
-    facebook: "https://facebook.com/",
-    youtube: "https://youtube.com/",
-    tiktok: "https://tiktok.com/",
+    "أستاذ الفيزياء والعلوم المتكاملة للمرحلة الإعدادية والثانوية والبكالوريا. " +
+    "أحرص على تبسيط المفاهيم وحل المسائل خطوة بخطوة، مع متابعة كل طالب عبر مجموعة " +
+    "واتساب مخصّصة لصفه ومركزه.",
+  handle: "ahmed_wahid",
+  status: "متاح لحجز مواعيد جديدة",
+  phones: {
+    primary: "01515131852",
+    secondary: "01127492304",
   },
+  photoUrl: "/teacher.svg",
+  facebookPage: "https://www.facebook.com/share/1BbL7msVrR/",
 };
 
+// Derived from the actual schedule data rather than invented numbers.
 export const experienceStats: ExperienceStat[] = [
-  { label: "سنوات الخبرة", value: "+15" },
-  { label: "طالب وطالبة", value: "+5000" },
-  { label: "نسبة التفوق", value: "%95" },
+  { value: String(Object.keys(locations).length), label: "مراكز تدريس" },
+  {
+    value: String(prepGrades.length + secondaryGrades.length),
+    label: "صفوف دراسية",
+  },
+  { value: "٢", label: "مرحلتين دراسيتين" },
 ];

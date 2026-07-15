@@ -43,9 +43,9 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-4 text-xl font-semibold text-blue-400 sm:text-2xl"
+            className="mt-4 text-lg font-semibold text-blue-400 sm:text-xl"
           >
-            أستاذ الفيزياء والعلوم
+            {teacher.title}
           </motion.p>
 
           <motion.p
@@ -84,7 +84,7 @@ export function HeroSection() {
           <ElectricBorder color="#60A5FA" speed={1} chaos={0.1} borderRadius={30}>
             <ProfileCard
               name={teacher.name}
-              title={teacher.title}
+              title="أستاذ الفيزياء والعلوم"
               handle={teacher.handle}
               status={teacher.status}
               contactText="احجز الآن"

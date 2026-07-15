@@ -4,18 +4,27 @@ import { MessageCircle } from "lucide-react";
 
 interface WhatsAppButtonProps {
   href: string;
-  label: string; // e.g. "مجموعة الأولاد"
+  label: string; // e.g. "مجموعة البنين"
   /** subtle attention pulse */
   pulse?: boolean;
   size?: "sm" | "md";
+  /** distinct color per audience, so boys/girls groups are visually distinguishable */
+  tone?: "default" | "boys" | "girls";
   className?: string;
 }
+
+const toneClasses: Record<NonNullable<WhatsAppButtonProps["tone"]>, string> = {
+  default: "bg-whatsapp hover:bg-whatsapp-dark",
+  boys: "bg-whatsapp hover:bg-whatsapp-dark",
+  girls: "bg-pink-500 hover:bg-pink-600",
+};
 
 export function WhatsAppButton({
   href,
   label,
   pulse,
   size = "md",
+  tone = "default",
   className = "",
 }: WhatsAppButtonProps) {
   const sizeClasses =
@@ -28,7 +37,7 @@ export function WhatsAppButton({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`فتح ${label} على واتساب`}
-      className={`inline-flex items-center justify-center rounded-xl bg-whatsapp font-bold text-white transition-all duration-200 hover:bg-whatsapp-dark hover:-translate-y-0.5 active:translate-y-0 ${sizeClasses} ${
+      className={`inline-flex items-center justify-center rounded-xl font-bold text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${toneClasses[tone]} ${sizeClasses} ${
         pulse ? "motion-safe:animate-[wa-pulse_2.4s_ease-in-out_infinite]" : ""
       } ${className}`}
     >

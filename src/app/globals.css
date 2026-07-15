@@ -43,16 +43,6 @@ body {
   position: relative;
 }
 
-/* ---------------------------------------------------------------------------
-   Site-wide ambient background now lives in <SiteBackground /> (a fixed,
-   interactive ShapeGrid canvas + glow layer rendered once in layout.tsx).
-   This rule just keeps normal page content stacked above it.
---------------------------------------------------------------------------- */
-body > * {
-  position: relative;
-  z-index: 1;
-}
-
 /* Latin numerals / english snippets use Inter */
 .font-latin {
   font-family: var(--font-latin);

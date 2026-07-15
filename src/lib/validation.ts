@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { grades } from "@/data/grades";
+import { allGrades } from "@/data/grades";
 
 // Egyptian mobile numbers: 010/011/012/015 + 8 digits (optionally +20 / 0020).
 const egyptianPhone = /^(?:\+?20|0)?1[0125]\d{8}$/;
 
-const gradeIds = grades.map((g) => g.id) as [string, ...string[]];
+const gradeIds = allGrades.map((g) => g.id) as [string, ...string[]];
 
 export const bookingSchema = z.object({
   studentName: z
