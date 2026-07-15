@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { CheckCircle2, Loader2, Send, AlertCircle } from "lucide-react";
 import { bookingSchema, type BookingFormValues } from "@/lib/validation";
-import { sendBooking } from "@/lib/email";
+import { sendToSheet } from "@/lib/sheet";
 import { allGrades } from "@/data/grades";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -38,7 +38,7 @@ export function BookingForm() {
     setStatus("submitting");
     setErrorMsg("");
     try {
-      await sendBooking(values);
+      await sendToSheet(values);
       setStatus("success");
       reset();
     } catch (err) {
