@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mr. Ahmed Wahid — Physics & Integrated Sciences Platform
+
+A single-page, RTL Arabic website for a physics and integrated sciences
+teacher (Preparatory, Secondary, and Baccalaureate students in Egypt). It
+replaces scattered WhatsApp images with a permanent hub for schedules,
+center locations, and one-tap WhatsApp group links, plus a booking form
+that emails the teacher directly.
+
+The centerpiece is an **interactive Booking & Schedule Portal**: students
+pick their grade (and, where relevant, their system and center), and the
+site instantly renders the matching schedule, center info, and the correct
+WhatsApp group link — including the gender-split boys/girls groups used at
+the secondary level.
+
+## Features
+
+- **Schedule Portal** — stage → grade → system → center selector that
+  resolves to the exact class schedule, center name/Facebook page, and
+  WhatsApp group link(s) for that selection.
+- **Booking form** — validated with Zod + React Hook Form, submits via
+  EmailJS with no backend required.
+- **Dark, animated UI** — an interactive canvas grid background
+  (`ShapeGrid`), glowing card borders (`ElectricBorder`), and a tilting
+  profile card, built on Framer Motion.
+- **Fully responsive & accessible** — RTL throughout, mobile-first layout,
+  keyboard-navigable, respects `prefers-reduced-motion`.
+- **Data-driven content** — every grade, schedule, center, and link lives
+  in `src/data/`, so content updates never require touching a component.
+
+## Tech Stack
+
+- **Framework** — Next.js 16 (App Router)
+- **Language** — TypeScript
+- **Styling** — Tailwind CSS 4
+- **Animation** — Framer Motion
+- **Forms** — React Hook Form + Zod
+- **Email** — EmailJS (client-side, no backend)
+- **Icons** — Lucide React
+- **Fonts** — Cairo (Arabic) / Inter (Latin), via `next/font`
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Booking submissions are sent via [EmailJS](https://www.emailjs.com/). Copy
+the example env file and fill in your own credentials:
 
-## Learn More
+```bash
+cp .env.local.example .env.local
+```
 
-To learn more about Next.js, take a look at the following resources:
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The EmailJS template should expect these variables: `student_name`,
+`student_phone`, `parent_phone`, `grade`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Scripts
 
-## Deploy on Vercel
+- `npm run dev` — start the dev server (Turbopack)
+- `npm run build` — production build with type checking
+- `npm run start` — serve the production build
+- `npm run lint` — run ESLint
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+src/
+├── app/                    # Root layout, global styles, page entry
+├── components/
+│   ├── layout/              # Navbar, Footer
+│   ├── sections/             # Hero, Grades, About, Booking sections
+│   ├── grades/               # SchedulePortal + its selector/result pieces
+│   ├── booking/              # BookingForm
+│   ├── effects/              # ShapeGrid, ElectricBorder, ProfileCard, SiteBackground
+│   └── ui/                   # Button, PillSelector, WhatsAppButton, etc.
+├── data/                    # types.ts, teacher.ts, locations.ts, grades.ts
+├── lib/                     # email.ts (EmailJS), validation.ts (Zod schemas)
+└── hooks/                   # useScrollReveal
+```
+
+### Updating content
+
+All teacher, center, and schedule content is data-driven — edit these
+files only, no component changes required:
+
+- `src/data/teacher.ts` — name, description, phone numbers, Facebook page.
+- `src/data/locations.ts` — teaching centers and their Facebook pages.
+- `src/data/grades.ts` — grades, schedules, and WhatsApp group links for
+  both the Preparatory and Secondary/Baccalaureate stages.
+
+## Deployment
+
+This is a standard Next.js app and deploys cleanly to
+[Vercel](https://vercel.com/new) or any Node-capable host. Run
+`npm run build` to produce a production build; set the EmailJS environment
+variables in your hosting provider before deploying.

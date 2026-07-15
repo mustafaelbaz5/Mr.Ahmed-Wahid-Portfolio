@@ -4,7 +4,7 @@
    Design tokens — palette from PROJECT_PLAN.md
    navy #0A1628 · electric blue #2563EB · soft gray card #F1F5F9
 --------------------------------------------------------------------------- */
-@theme {
+:root {
   --color-navy: #0a1628;
   --color-navy-800: #0f1f38;
   --color-navy-700: #16294a;
