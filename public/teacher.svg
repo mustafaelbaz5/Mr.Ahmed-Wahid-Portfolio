@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" role="img" aria-label="صورة المعلّم (مؤقتة)">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16294a"/>
+      <stop offset="1" stop-color="#0a1628"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="640" fill="url(#bg)"/>
+  <circle cx="320" cy="250" r="110" fill="#2563eb" opacity="0.9"/>
+  <path d="M120 560c0-110 90-190 200-190s200 80 200 190z" fill="#2563eb" opacity="0.9"/>
+  <text x="320" y="610" text-anchor="middle" font-family="Cairo, sans-serif" font-size="30" fill="#93c5fd">صورة المعلّم</text>
+</svg>

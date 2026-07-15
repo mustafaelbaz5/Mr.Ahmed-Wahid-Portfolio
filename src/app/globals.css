@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — palette from PROJECT_PLAN.md
+   navy #0A1628 · electric blue #2563EB · soft gray card #F1F5F9
+--------------------------------------------------------------------------- */
+@theme {
+  --color-navy: #0a1628;
+  --color-navy-800: #0f1f38;
+  --color-navy-700: #16294a;
+  --color-blue: #2563eb;
+  --color-blue-600: #1d4ed8;
+  --color-blue-400: #60a5fa;
+  --color-card: #f1f5f9;
+  --color-card-muted: #e2e8f0;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #1da851;
+
+  --font-sans: var(--font-cairo), system-ui, sans-serif;
+  --font-latin: var(--font-inter), system-ui, sans-serif;
+
+  --shadow-glow: 0 0 40px -8px rgba(37, 99, 235, 0.55);
+  --shadow-card: 0 10px 30px -12px rgba(10, 22, 40, 0.15);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a1628;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* offset for sticky navbar on anchor jumps */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Latin numerals / english snippets use Inter */
+.font-latin {
+  font-family: var(--font-latin);
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Consistent focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Subtle pulse used on WhatsApp CTAs */
+@keyframes wa-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(37, 211, 102, 0);
+  }
+}
