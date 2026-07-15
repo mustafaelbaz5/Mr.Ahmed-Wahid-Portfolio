@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cairo, Inter } from "next/font/google";
 import "./globals.css";
 import { teacher } from "@/data/teacher";
+import { SiteBackground } from "@/components/effects/SiteBackground";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -55,6 +56,7 @@ export default function RootLayout({
       className={`${cairo.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-navy text-white">
+        <SiteBackground />
         {children}
       </body>
     </html>

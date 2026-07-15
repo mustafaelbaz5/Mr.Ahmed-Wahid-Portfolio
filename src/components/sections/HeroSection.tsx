@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { CalendarCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { teacher } from "@/data/teacher";
-import Lightfall from "@/components/effects/Lightfall";
 import ElectricBorder from "@/components/effects/ElectricBorder";
 import ProfileCard from "@/components/effects/ProfileCard";
 
@@ -16,34 +15,8 @@ export function HeroSection() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-navy pt-28 pb-20 sm:pt-32 sm:pb-28"
+      className="relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-28"
     >
-      {/* Lightfall WebGL background */}
-      <div className="absolute inset-0" aria-hidden="true">
-        <Lightfall
-          colors={["#60A5FA", "#2563EB", "#93C5FD"]}
-          backgroundColor="#0A1628"
-          speed={0.6}
-          streakCount={7}
-          streakWidth={1.1}
-          streakLength={1.2}
-          glow={1}
-          density={0.7}
-          twinkle={1}
-          zoom={2.4}
-          backgroundGlow={0.8}
-          opacity={0.85}
-          mouseInteraction
-          mouseStrength={0.6}
-          mouseRadius={0.6}
-        />
-      </div>
-      {/* Readability scrim over the animated background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-navy/40 via-navy/55 to-navy"
-      />
-
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col-reverse items-center gap-12 px-4 sm:px-6 md:flex-row md:justify-between">
         {/* Text */}
         <div className="max-w-xl text-center md:text-start">

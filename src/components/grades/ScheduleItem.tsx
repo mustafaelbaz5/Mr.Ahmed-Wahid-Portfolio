@@ -6,9 +6,9 @@ export function ScheduleItem({ schedule }: { schedule: Schedule }) {
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
       <div className="flex items-start gap-2">
         <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" aria-hidden="true" />
-        <div>
-          <p className="font-bold text-white">{schedule.locationName}</p>
-          <p className="text-sm text-slate-400">{schedule.address}</p>
+        <div className="min-w-0">
+          <p className="break-words font-bold text-white">{schedule.locationName}</p>
+          <p className="break-words text-sm text-slate-400">{schedule.address}</p>
         </div>
       </div>
 

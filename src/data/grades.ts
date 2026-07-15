@@ -3,6 +3,7 @@ import type { GradeInfo } from "./types";
 // ----------------------------------------------------------------------------
 // جميع بيانات الصفوف والمواعيد. عدّل هنا فقط لتحديث المحتوى — بدون لمس المكونات.
 // روابط واتساب أدناه هي روابط مؤقتة (placeholder) ريثما يوفّر المعلّم الروابط النهائية.
+// المرحلة الإعدادية: مجموعة واحدة مشتركة. المرحلة الثانوية: مجموعتان (أولاد / بنات).
 // ----------------------------------------------------------------------------
 
 const PLACEHOLDER_WA = "https://chat.whatsapp.com/PLACEHOLDER";
@@ -21,7 +22,7 @@ export const grades: GradeInfo[] = [
         timeSlot: "2:00 — 3:30",
       },
     ],
-    whatsapp: { boys: PLACEHOLDER_WA, girls: PLACEHOLDER_WA },
+    whatsapp: { mode: "single", link: PLACEHOLDER_WA },
   },
   {
     id: "prep-2",
@@ -36,7 +37,7 @@ export const grades: GradeInfo[] = [
         timeSlot: "3:30 — 5:00",
       },
     ],
-    whatsapp: { boys: PLACEHOLDER_WA, girls: PLACEHOLDER_WA },
+    whatsapp: { mode: "single", link: PLACEHOLDER_WA },
   },
   {
     id: "prep-3",
@@ -57,7 +58,7 @@ export const grades: GradeInfo[] = [
         timeSlot: "11:00 — 12:30",
       },
     ],
-    whatsapp: { boys: PLACEHOLDER_WA, girls: PLACEHOLDER_WA },
+    whatsapp: { mode: "single", link: PLACEHOLDER_WA },
   },
   {
     id: "sec-1",
@@ -72,7 +73,7 @@ export const grades: GradeInfo[] = [
         timeSlot: "6:30 — 8:00",
       },
     ],
-    whatsapp: { boys: PLACEHOLDER_WA, girls: PLACEHOLDER_WA },
+    whatsapp: { mode: "split", boys: PLACEHOLDER_WA, girls: PLACEHOLDER_WA },
   },
   {
     id: "sec-2",
@@ -87,7 +88,7 @@ export const grades: GradeInfo[] = [
         timeSlot: "8:00 — 9:30",
       },
     ],
-    whatsapp: { boys: PLACEHOLDER_WA, girls: PLACEHOLDER_WA },
+    whatsapp: { mode: "split", boys: PLACEHOLDER_WA, girls: PLACEHOLDER_WA },
   },
   {
     id: "sec-3",
@@ -108,7 +109,7 @@ export const grades: GradeInfo[] = [
         timeSlot: "6:00 — 8:00",
       },
     ],
-    whatsapp: { boys: PLACEHOLDER_WA, girls: PLACEHOLDER_WA },
+    whatsapp: { mode: "split", boys: PLACEHOLDER_WA, girls: PLACEHOLDER_WA },
   },
 ];
 

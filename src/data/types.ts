@@ -9,10 +9,10 @@ export interface Schedule {
   timeSlot: string; // e.g. "2:00 — 3:00"
 }
 
-export interface WhatsAppLinks {
-  boys: string; // full https://chat.whatsapp.com/... URL
-  girls: string;
-}
+// Preparatory grades share one group; Secondary grades split boys/girls.
+export type WhatsAppLinks =
+  | { mode: "single"; link: string }
+  | { mode: "split"; boys: string; girls: string };
 
 export interface GradeInfo {
   id: string; // unique key, e.g. "prep-1"
