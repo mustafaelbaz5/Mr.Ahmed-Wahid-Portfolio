@@ -1,39 +1,57 @@
 "use client";
 
-import Image from "next/image";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { CalendarCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { teacher } from "@/data/teacher";
+import Lightfall from "@/components/effects/Lightfall";
+import ElectricBorder from "@/components/effects/ElectricBorder";
+import ProfileCard from "@/components/effects/ProfileCard";
 
 export function HeroSection() {
-  const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
-  // subtle parallax on the photo
-  const photoY = useTransform(scrollY, [0, 400], [0, reduce ? 0 : 60]);
+  const scrollToBooking = () => {
+    document.querySelector("#booking")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
       id="top"
       className="relative overflow-hidden bg-navy pt-28 pb-20 sm:pt-32 sm:pb-28"
     >
-      {/* Decorative gradient glows */}
+      {/* Lightfall WebGL background */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Lightfall
+          colors={["#60A5FA", "#2563EB", "#93C5FD"]}
+          backgroundColor="#0A1628"
+          speed={0.6}
+          streakCount={7}
+          streakWidth={1.1}
+          streakLength={1.2}
+          glow={1}
+          density={0.7}
+          twinkle={1}
+          zoom={2.4}
+          backgroundGlow={0.8}
+          opacity={0.85}
+          mouseInteraction
+          mouseStrength={0.6}
+          mouseRadius={0.6}
+        />
+      </div>
+      {/* Readability scrim over the animated background */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-      >
-        <div className="absolute -top-24 right-0 h-96 w-96 rounded-full bg-blue/20 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-blue-600/10 blur-3xl" />
-      </div>
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-navy/40 via-navy/55 to-navy"
+      />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col-reverse items-center gap-12 px-4 sm:px-6 md:flex-row md:justify-between">
+      <div className="relative z-10 mx-auto flex max-w-6xl flex-col-reverse items-center gap-12 px-4 sm:px-6 md:flex-row md:justify-between">
         {/* Text */}
         <div className="max-w-xl text-center md:text-start">
           <motion.span
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-semibold text-blue-400"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-semibold text-blue-400 backdrop-blur-sm"
           >
             <Sparkles className="h-4 w-4" aria-hidden="true" />
             الفيزياء ببساطة ومتعة
@@ -83,25 +101,29 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Photo */}
+        {/* Profile card */}
         <motion.div
-          style={{ y: photoY }}
-          initial={{ opacity: 0, scale: 0.85 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative"
+          className="hero-profile-card"
         >
-          <div className="absolute inset-0 -z-10 rounded-full bg-blue/30 blur-2xl" />
-          <div className="relative h-56 w-56 overflow-hidden rounded-full border-4 border-blue/40 shadow-[var(--shadow-glow)] sm:h-72 sm:w-72 lg:h-80 lg:w-80">
-            <Image
-              src={teacher.photoUrl}
-              alt={`صورة ${teacher.name}`}
-              fill
-              priority
-              sizes="(max-width: 640px) 14rem, 20rem"
-              className="object-cover"
+          <ElectricBorder color="#60A5FA" speed={1} chaos={0.1} borderRadius={30}>
+            <ProfileCard
+              name={teacher.name}
+              title={teacher.title}
+              handle={teacher.handle}
+              status={teacher.status}
+              contactText="احجز الآن"
+              avatarUrl={teacher.photoUrl}
+              showUserInfo
+              enableTilt
+              behindGlowEnabled
+              behindGlowColor="rgba(96, 165, 250, 0.55)"
+              innerGradient="linear-gradient(145deg,#16294a8c 0%,#2563EB44 100%)"
+              onContactClick={scrollToBooking}
             />
-          </div>
+          </ElectricBorder>
         </motion.div>
       </div>
     </section>

@@ -79,3 +79,24 @@ body {
     box-shadow: 0 0 0 8px rgba(37, 211, 102, 0);
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Hero ProfileCard sizing — the React Bits component defaults to a near
+   full-height card; pin it to a hero-appropriate size regardless of CSS
+   import order (ProfileCard.css loads via its own component-level import).
+--------------------------------------------------------------------------- */
+.hero-profile-card .pc-card {
+  height: 400px !important;
+  max-height: 400px !important;
+}
+
+@media (max-width: 640px) {
+  .hero-profile-card .pc-card {
+    height: 320px !important;
+    max-height: 320px !important;
+  }
+}
+
+.hero-profile-card .pc-details h3 {
+  font-family: var(--font-sans);
+}

@@ -6,12 +6,14 @@ import { ChevronDown, GraduationCap } from "lucide-react";
 import type { GradeInfo } from "@/data/types";
 import { ScheduleItem } from "./ScheduleItem";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import ElectricBorder from "@/components/effects/ElectricBorder";
 
 export function GradeCard({ grade }: { grade: GradeInfo }) {
   const [expanded, setExpanded] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const panelId = `grade-panel-${grade.id}`;
 
-  return (
+  const card = (
     <motion.article
       layout
       className="flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-card)] ring-1 ring-card-muted"
@@ -71,5 +73,23 @@ export function GradeCard({ grade }: { grade: GradeInfo }) {
         <WhatsAppButton href={grade.whatsapp.girls} label="مجموعة البنات" />
       </div>
     </motion.article>
+  );
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={() => setHovered(false)}
+      className="h-full"
+    >
+      {hovered ? (
+        <ElectricBorder color="#2563eb" speed={1.2} chaos={0.08} borderRadius={16}>
+          {card}
+        </ElectricBorder>
+      ) : (
+        card
+      )}
+    </div>
   );
 }

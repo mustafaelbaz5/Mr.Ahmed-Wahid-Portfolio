@@ -3,6 +3,8 @@ import type { ExperienceStat, TeacherProfile } from "./types";
 export const teacher: TeacherProfile = {
   name: "أ. أحمد وحيد",
   title: "مدرس الفيزياء والعلوم",
+  handle: "ahmed_waheed",
+  status: "متاح لحجز مواعيد جديدة",
   bio:
     "مدرس فيزياء وعلوم بخبرة تتجاوز خمسة عشر عامًا في تدريس طلاب المرحلتين الإعدادية والثانوية. " +
     "أؤمن بأن الفيزياء لغة نفهم بها العالم من حولنا، ولذلك أحرص على تبسيط المفاهيم وربطها بالحياة اليومية. " +
