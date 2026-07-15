@@ -1,8 +1,27 @@
-import { Atom, Facebook, MapPin, Phone, Youtube } from "lucide-react";
+import { Atom, MapPin, Phone } from "lucide-react";
 import { teacher } from "@/data/teacher";
 
-// Lucide has no TikTok glyph; small inline mark keeps the icon set consistent.
-function TikTokIcon({ className }: { className?: string }) {
+// Lucide dropped brand glyphs, so social marks are small inline SVGs to keep
+// the icon set visually consistent.
+type IconProps = { className?: string };
+
+function FacebookIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.6V3.6C16.9 3.6 16 3.5 15 3.5c-2.3 0-3.9 1.4-3.9 4v2.3H8.4V13h2.7v8h2.4z" />
+    </svg>
+  );
+}
+
+function YoutubeIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M22 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.7 2 12 2 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8C22 15.3 22 12 22 12zM10 15V9l5.2 3-5.2 3z" />
+    </svg>
+  );
+}
+
+function TikTokIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
       <path d="M16.5 3c.3 2 1.6 3.6 3.5 3.9v2.6c-1.3.1-2.5-.3-3.6-1v6.1a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.7a2.9 2.9 0 1 0 2 2.8V3h2.8z" />
@@ -11,8 +30,8 @@ function TikTokIcon({ className }: { className?: string }) {
 }
 
 const socialIcons = [
-  { key: "facebook", Icon: Facebook, label: "فيسبوك" },
-  { key: "youtube", Icon: Youtube, label: "يوتيوب" },
+  { key: "facebook", Icon: FacebookIcon, label: "فيسبوك" },
+  { key: "youtube", Icon: YoutubeIcon, label: "يوتيوب" },
   { key: "tiktok", Icon: TikTokIcon, label: "تيك توك" },
 ] as const;
 

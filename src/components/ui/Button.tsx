@@ -48,8 +48,11 @@ export function Button(props: ButtonAsButton | ButtonAsLink) {
     );
   }
 
-  const { variant: _v, size: _s, className: _c, ...rest } =
-    props as ButtonAsButton;
+  const rest: Partial<ButtonAsButton> = { ...(props as ButtonAsButton) };
+  delete rest.variant;
+  delete rest.size;
+  delete rest.className;
+  delete rest.children;
   return (
     <button className={classes} {...rest}>
       {children}
