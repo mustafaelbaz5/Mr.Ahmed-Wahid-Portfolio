@@ -1,6 +1,6 @@
 import emailjs from "@emailjs/browser";
 import type { BookingFormValues } from "./validation";
-import { grades } from "@/data/grades";
+import { allGrades } from "@/data/grades";
 
 // ----------------------------------------------------------------------------
 // Email service abstraction (Dependency Inversion): the form depends on
@@ -24,7 +24,7 @@ export async function sendBooking(values: BookingFormValues): Promise<void> {
   }
 
   const gradeLabel =
-    grades.find((g) => g.id === values.grade)?.label ?? values.grade;
+    allGrades.find((g) => g.id === values.grade)?.label ?? values.grade;
 
   await emailjs.send(
     SERVICE_ID!,

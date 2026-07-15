@@ -1,41 +1,67 @@
 export type Stage = "preparatory" | "secondary";
 
-export type Subject = "علوم" | "علوم متكاملة" | "فيزياء";
+export type LocationKey = "monshat_el_okhwa" | "borg_el_noor" | "mit_el_amel";
 
-export interface Schedule {
-  locationName: string; // e.g. "سنتر المهندس — ميت العامل"
-  address: string; // full address text
-  days: string[]; // e.g. ["السبت", "الاثنين", "الأربعاء"]
-  timeSlot: string; // e.g. "2:00 — 3:00"
+export interface LocationInfo {
+  key: LocationKey;
+  name: string; // short area name, e.g. "برج النور"
+  centerName: string; // full center name shown to students
+  facebook?: string;
 }
 
-export interface WhatsAppLinks {
-  boys: string; // full https://chat.whatsapp.com/... URL
-  girls: string;
+// Preparatory grades: one shared group, fixed location.
+export interface SingleGroupOffering {
+  schedule: string;
+  whatsappLink: string;
 }
 
-export interface GradeInfo {
-  id: string; // unique key, e.g. "prep-1"
-  stage: Stage;
-  label: string; // e.g. "الصف الأول الإعدادي"
-  subject: Subject;
-  schedules: Schedule[]; // one grade can appear at multiple locations
-  whatsapp: WhatsAppLinks;
+// Secondary grades: gender-split groups, offered per location.
+export interface LocationOffering {
+  locationKey: LocationKey;
+  schedule: string; // may contain multiple "\n"-separated groups
+  whatsappBoys: string;
+  whatsappGirls: string;
 }
+
+export interface PrepGrade {
+  id: string;
+  name: string;
+  subject: string;
+  offering: SingleGroupOffering;
+}
+
+export interface SecondarySystem {
+  key: string; // e.g. "general" | "baccalaureate"
+  name: string;
+  locations: LocationOffering[];
+}
+
+export interface SecondaryGrade {
+  id: string;
+  name: string;
+  subject: string;
+  // Grade 2 splits into systems (each with its own locations); grades 1 & 3
+  // offer locations directly.
+  systems?: SecondarySystem[];
+  locations?: LocationOffering[];
+}
+
+export type WhatsAppDisplay =
+  | { mode: "single"; link: string }
+  | { mode: "split"; boys: string; girls: string };
 
 export interface TeacherProfile {
   name: string;
   title: string;
-  handle: string; // short latin handle for the profile card, e.g. "ahmed_waheed"
+  handle: string; // short latin handle for the profile card, e.g. "ahmed_wahid"
   status: string; // e.g. "متاح لحجز مواعيد جديدة"
   bio: string;
-  phone: string;
-  photoUrl: string;
-  socialLinks: {
-    facebook?: string;
-    youtube?: string;
-    tiktok?: string;
+  phones: {
+    primary: string;
+    secondary: string;
   };
+  photoUrl: string;
+  facebookPage?: string;
 }
 
 export interface ExperienceStat {
