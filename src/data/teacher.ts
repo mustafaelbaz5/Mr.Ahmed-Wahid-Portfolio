@@ -1,6 +1,7 @@
 import type { ExperienceStat, TeacherProfile } from "./types";
 import { prepGrades, secondaryGrades } from "./grades";
 import { locations } from "./locations";
+import heroProfileImage from "@/assets/hero_profile.png";
 
 export const teacher: TeacherProfile = {
   name: "مستر أحمد وحيد",
@@ -16,7 +17,7 @@ export const teacher: TeacherProfile = {
     primary: "01515131852",
     secondary: "01127492304",
   },
-  photoUrl: "/teacher.svg",
+  photoUrl: heroProfileImage.src,
   facebookPage: "https://www.facebook.com/share/1BbL7msVrR/",
 };
 

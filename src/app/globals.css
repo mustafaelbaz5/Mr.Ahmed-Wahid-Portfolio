@@ -32,7 +32,12 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem; /* offset for sticky navbar on anchor jumps */
-  overflow-x: hidden;
+  /* NOTE: overflow-x:hidden must NOT be set on <html> or <body> — WebKit/
+     iOS Safari has a long-standing bug where that breaks hit-testing on
+     `position: fixed` descendants (our Navbar + its mobile menu), making
+     them untappable. Horizontal-scroll protection instead lives on a
+     wrapper div in page.tsx, around the scrollable content only — the
+     fixed Navbar sits outside it and is unaffected. */
 }
 
 body {
@@ -42,8 +47,6 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   position: relative;
-  overflow-x: hidden;
-  max-width: 100vw;
 }
 
 /* Latin numerals / english snippets use Inter */
@@ -86,22 +89,62 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
-   Hero ProfileCard sizing — the React Bits component defaults to a near
-   full-height card; pin it to a hero-appropriate size regardless of CSS
-   import order (ProfileCard.css loads via its own component-level import).
+   Hero ProfileCard — the React Bits component defaults to a near full-height
+   card sized for a transparent character cutout; the real teacher photo is a
+   full rectangular shot shown clean (no overlay text), larger, and static
+   (tilt disabled via props; the rules below also neutralize the component's
+   pure-CSS :hover shine/glare sweep, which fires independently of props).
 --------------------------------------------------------------------------- */
 .hero-profile-card .pc-card {
-  height: 400px !important;
-  max-height: 400px !important;
+  height: 500px !important;
+  max-height: 500px !important;
+  aspect-ratio: 0.95;
 }
 
 @media (max-width: 640px) {
   .hero-profile-card .pc-card {
-    height: 320px !important;
-    max-height: 320px !important;
+    height: 350px !important;
+    max-height: 350px !important;
   }
 }
 
-.hero-profile-card .pc-details h3 {
-  font-family: var(--font-sans);
+.hero-profile-card .pc-details {
+  display: none;
+}
+
+.hero-profile-card .pc-avatar-content {
+  mix-blend-mode: normal;
+}
+
+.hero-profile-card .pc-avatar-content .avatar {
+  inset: 0;
+  left: 0;
+  bottom: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  /* Reset the base component's centering transform (translateX(-50%) paired
+     with left:50%) — since we position via inset:0 instead, that leftover
+     transform shifted the image half a card-width off-screen. */
+  transform: none;
+}
+
+/* Keep the card static on hover — no rotation, no holographic sweep. */
+.hero-profile-card .pc-card:hover,
+.hero-profile-card .pc-card.active {
+  transform: translateZ(0) rotateX(0deg) rotateY(0deg) !important;
+}
+
+.hero-profile-card .pc-card:hover .pc-shine,
+.hero-profile-card .pc-card.active .pc-shine {
+  filter: brightness(0.66) contrast(1.33) saturate(0.33) opacity(0.5) !important;
+  animation-play-state: running !important;
+}
+
+.hero-profile-card .pc-card:hover .pc-shine::before,
+.hero-profile-card .pc-card.active .pc-shine::before,
+.hero-profile-card .pc-card:hover .pc-shine::after,
+.hero-profile-card .pc-card.active .pc-shine::after {
+  opacity: 0 !important;
 }
