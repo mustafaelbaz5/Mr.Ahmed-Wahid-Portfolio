@@ -86,13 +86,15 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
-   Hero ProfileCard sizing — the React Bits component defaults to a near
-   full-height card; pin it to a hero-appropriate size regardless of CSS
-   import order (ProfileCard.css loads via its own component-level import).
+   Hero ProfileCard — the React Bits component defaults to a near full-height
+   card sized for a transparent character cutout; the real teacher photo is a
+   full rectangular shot, so this overrides sizing, the avatar layer, and
+   adds a scrim so the name/title stay legible over any photo content.
 --------------------------------------------------------------------------- */
 .hero-profile-card .pc-card {
   height: 400px !important;
   max-height: 400px !important;
+  aspect-ratio: 0.85;
 }
 
 @media (max-width: 640px) {
@@ -104,4 +106,29 @@ body {
 
 .hero-profile-card .pc-details h3 {
   font-family: var(--font-sans);
+}
+
+.hero-profile-card .pc-avatar-content {
+  mix-blend-mode: normal;
+}
+
+.hero-profile-card .pc-avatar-content .avatar {
+  inset: 0;
+  left: 0;
+  bottom: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% 22%;
+  transform: scale(calc(1 + (var(--pointer-from-left) - 0.5) * 0.02));
+  transform-origin: center;
+}
+
+.hero-profile-card .pc-avatar-content::before {
+  background: linear-gradient(
+    to top,
+    rgba(10, 22, 40, 0.9) 0%,
+    rgba(10, 22, 40, 0.1) 38%,
+    rgba(10, 22, 40, 0.55) 100%
+  );
 }
